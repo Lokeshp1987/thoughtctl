@@ -22,9 +22,7 @@ class MainViewModel(
 
     val issuesData: MutableLiveData<Resource<ImagesResponse>> = MutableLiveData()
 
-    init {
-      //  getIssues()
-    }
+
 
     fun getIssues() = viewModelScope.launch {
         fetchIssues()

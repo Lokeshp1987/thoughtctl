@@ -69,7 +69,6 @@ class MainActivity : AppCompatActivity() {
         val repository = AppRepository()
         val factory = ViewModelProviderFactory(application, repository)
         viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
-
     }
 
     private fun getPictures() {

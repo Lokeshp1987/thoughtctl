@@ -56,15 +56,11 @@ class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.IssuesViewHolder>() {
                         ivImage.load(issueItem.images.get(i).link)
                         break
                     }
-
                 }
-
                 tvImagesCount.text = "Additional Images : "+issueItem.images.size
             }
-
             tvTitle.text = "Title : "+ issueItem.title
             tvDate.text = "Date : "+ Utils.getDateFromTimestamp(issueItem.datetime!!)
-
         }
     }
 }

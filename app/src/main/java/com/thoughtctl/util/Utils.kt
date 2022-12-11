@@ -35,19 +35,6 @@ object Utils {
         return false
     }
 
-    fun changeDateFormat(my_date:String): String
-    {
-        try {
-            val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-            val strDate = sdf.parse(my_date)
-            val formatter = SimpleDateFormat("dd-MMM-yyyy HH:mm:ss")
-            return formatter.format(strDate)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return ""
-    }
-
     fun getDateFromTimestamp(milliSeconds: Long): String? {
         // Create a DateFormatter object for displaying date in specified
         // format.
