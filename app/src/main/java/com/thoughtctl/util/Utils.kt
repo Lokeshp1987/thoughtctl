@@ -42,7 +42,7 @@ object Utils {
         // Create a calendar object that will convert the date and time value in
         // milliseconds to date.
         val calendar = Calendar.getInstance()
-        calendar.setTimeInMillis(milliSeconds)
+        calendar.setTimeInMillis(milliSeconds*1000)
         return formatter.format(calendar.time)
     }
 }

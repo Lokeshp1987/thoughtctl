@@ -12,4 +12,10 @@ interface API {
     suspend fun getImages(@Query("q") query: String,@Query("q_type") type: String): Response<ImagesResponse>
 
 
+    @GET("3/gallery/search")
+    suspend fun getNormalImages(@Query("q") query: String,@Query("q_type") type: String): Response<ImagesResponse>
+
+
+
+
 }

@@ -63,4 +63,5 @@ class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.IssuesViewHolder>() {
             tvDate.text = "Date : "+ Utils.getDateFromTimestamp(issueItem.datetime!!)
         }
     }
+
 }

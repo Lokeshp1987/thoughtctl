@@ -22,22 +22,21 @@ class MainViewModel(
 
     val issuesData: MutableLiveData<Resource<ImagesResponse>> = MutableLiveData()
 
+    var topSearchEnable: Boolean = true
 
-
-    fun getIssues() = viewModelScope.launch {
-        fetchIssues()
+    fun getImages() = viewModelScope.launch {
+        fetchImages()
     }
 
-    fun setSearchValue(searchText : String)
-    {
+    fun setSearchValue(searchText: String) {
         appRepository.search = searchText
     }
-    private suspend fun fetchIssues() {
+
+    private suspend fun fetchImages() {
         issuesData.postValue(Resource.Loading())
         try {
             if (hasInternetConnection(getApplication<MyApplication>())) {
-                val response = appRepository.getImages()
-                issuesData.postValue(handlePicsResponse(response))
+                issuesData.postValue(handlePicsResponse(getAPIResult()))
             } else {
                 issuesData.postValue(Resource.Error(getApplication<MyApplication>().getString(R.string.no_internet_connection)))
             }
@@ -59,6 +58,13 @@ class MainViewModel(
                 )
             }
         }
+    }
+
+    suspend fun getAPIResult(): Response<ImagesResponse> {
+        if (topSearchEnable)
+            return appRepository.getImages()
+        else
+            return appRepository.getNormalImages()
     }
 
     private fun handlePicsResponse(response: Response<ImagesResponse>): Resource<ImagesResponse> {

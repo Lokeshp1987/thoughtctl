@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     lateinit var imagesAdapter: ImagesAdapter
     var gridVisible: Boolean = true
+
     lateinit var galeryArray: GaleryArray
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,10 +42,20 @@ class MainActivity : AppCompatActivity() {
         rvPics.setLayoutManager(GridLayoutManager(this, 2))
         rvPics.adapter = imagesAdapter
         tvChangeView.setOnClickListener {
-            if(this::galeryArray.isInitialized)
+            if (this::galeryArray.isInitialized)
                 changeLayout(galeryArray)
             else
-                Toast.makeText(this, resources.getString(R.string.notthing_to_show), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.notthing_to_show),
+                    Toast.LENGTH_SHORT
+                ).show()
+        }
+        tvChangeApi.setOnClickListener {
+            if (viewModel.topSearchEnable)
+                viewModel.topSearchEnable = false
+            else
+                viewModel.topSearchEnable = true
         }
         setupViewModel()
         getPictures()
@@ -103,7 +114,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
         viewModel.setSearchValue(query)
-        viewModel.getIssues()
+        viewModel.getImages()
     }
 
     private fun changeLayout(galeryArray: GaleryArray) {
